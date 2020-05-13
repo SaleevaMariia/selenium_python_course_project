@@ -19,6 +19,8 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.MESSAGE_BASKET_COST), \
             "There is no message about basket sum"
         cost_text = self.browser.find_element(*ProductPageLocators.MESSAGE_BASKET_COST).text
+        print(book_cost)
+        print(cost_text)
         assert cost_text == book_cost, "Wrong sum of basket"
 
     def check_name_of_book(self, book_name):
@@ -26,3 +28,11 @@ class ProductPage(BasePage):
             *ProductPageLocators.MESSAGE_BOOK_ADD_SUCCESS), "There is no message about book name"
         name_text = self.browser.find_element(*ProductPageLocators.MESSAGE_BOOK_ADD_SUCCESS).text
         assert name_text == book_name, "Wrong book in the basket"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_BOOK_ADD_SUCCESS), \
+            "Success message is presented, but should not be"
+
+    def should_disappeared(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_BOOK_ADD_SUCCESS), \
+            "Something isn't disappeared, but should"

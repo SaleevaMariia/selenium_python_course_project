@@ -17,3 +17,4 @@ class ProductPageLocators:
     BOOK_NAME = (By.CSS_SELECTOR, ".product_main h1")
     BOOK_COST = (By.CSS_SELECTOR, ".product_main p.price_color")
 
+
