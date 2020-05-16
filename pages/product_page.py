@@ -19,8 +19,6 @@ class ProductPage(BasePage):
         assert self.is_element_present(*ProductPageLocators.MESSAGE_BASKET_COST), \
             "There is no message about basket sum"
         cost_text = self.browser.find_element(*ProductPageLocators.MESSAGE_BASKET_COST).text
-        print(book_cost)
-        print(cost_text)
         assert cost_text == book_cost, "Wrong sum of basket"
 
     def check_name_of_book(self, book_name):

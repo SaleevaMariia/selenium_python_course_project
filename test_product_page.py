@@ -9,6 +9,7 @@ link_part = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/
 product_link = "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-robot-novels_25/"
 
 
+@pytest.mark.need_review
 @pytest.mark.parametrize('link', [link_part + "0", link_part + "1", link_part + "2", link_part + "3", link_part + "4",
                                   link_part + "5", link_part + "6",
                                   pytest.param(link_part + "7", marks=pytest.mark.xfail),
@@ -52,12 +53,14 @@ def test_guest_should_see_login_link_on_product_page(browser):
     page.should_be_login_link()
 
 
+@pytest.mark.need_review
 def test_guest_can_go_to_login_page_from_product_page(browser):
     page = ProductPage(browser, product_link)
     page.open()
     page.go_to_login_page()
 
 
+@pytest.mark.need_review
 def test_guest_cant_see_product_in_basket_opened_from_product_page(browser):
     page = ProductPage(browser, product_link)
     page.open()
@@ -84,11 +87,11 @@ class TestUserAddToBasketFromProductPage:
         page.open()
         page.should_not_be_success_message()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser):
         page = ProductPage(browser, product_link)
         page.open()
         page.add_product_to_basket()
-        page.solve_quiz_and_get_code()
         book_name = page.get_name_of_book()
         book_cost = page.get_cost_of_book()
         page.check_cost_basket(book_cost)
